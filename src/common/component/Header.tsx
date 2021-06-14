@@ -169,7 +169,7 @@ export default function PrimarySearchAppBar() {
               <Badge badgeContent={4} color="secondary">
                 <MailIcon />
               </Badge> 
-            </IconButton> */}
+            </IconButton>2 */}
             <Link to="/todo">  
               <IconButton aria-label="show 11 new notifications" color="inherit">
                 <Badge badgeContent={1} color="secondary">
