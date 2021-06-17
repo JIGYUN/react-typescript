@@ -147,7 +147,7 @@ export default function PrimarySearchAppBar() {
   );
 
   return (
-    <div className={classes.grow}>
+    <div className={classes.grow} style={{textAlign:"center",alignItems:"center",display: "flex",justifyContent:"center"}}>
       <AppBar position="fixed"> 
         <Toolbar>
           <IconButton
@@ -159,7 +159,7 @@ export default function PrimarySearchAppBar() {
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" className={classes.title}>
-            <Link to="/" style={{ textDecoration: 'none !important',color:'white' }}> 
+            <Link to="/" style={{ textDecoration: 'none !important',color:'white' }}>
               Todo    
             </Link>
           </Typography>

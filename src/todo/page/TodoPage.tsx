@@ -15,18 +15,10 @@ class TodoPage extends Component{
   {
     return(
     <div className="TodoPage">
-      <div style={{textAlign:"center",alignItems:"center",display: "flex",justifyContent:"center"}}>  
         <Header/>
-      </div>
-      <div style={{textAlign:"center",alignItems:"center",paddingTop:"60px"}}>       
         <TodoForm/> 
-      </div>
-      <div style={{textAlign:"center",alignItems:"center",display: "flex",justifyContent:"center"}}>  
         <TodoList />
-      </div>
-      <div style={{textAlign:"center",alignItems:"center",display: "flex",justifyContent:"center"}}>  
         <Footer/>
-      </div>
     </div>
     )
   }

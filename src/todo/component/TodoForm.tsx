@@ -30,20 +30,14 @@ const TodoForm = () => {
     todo.addTodo(content);
     setContent("");
   };
-/*
-  const onSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    todo.fnList();
-  }; 
-  */
 
   const onChangeContent = (e: React.ChangeEvent<HTMLInputElement>) => {
     setContent(e.target.value);
   };
 
-  return (
+  return ( 
 
-    <form onSubmit={onSubmit}>  
+    <form onSubmit={onSubmit} style={{textAlign:"center",alignItems:"center",paddingTop:"60px"}}>  
       <TextField id="standard-basic" label="할일" value={content} onChange={onChangeContent} placeholder="내용"/>
       <Button type="submit" variant="contained" color="primary" startIcon={<SaveIcon />} className={classes.button}  >
         등록 

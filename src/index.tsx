@@ -2,7 +2,6 @@ import React from "react";
 import { Provider } from "mobx-react";
 import ReactDOM from "react-dom";
 
-import TodoPage from "./todo/page/TodoPage";
 import App from "./App";
 
 ReactDOM.render(

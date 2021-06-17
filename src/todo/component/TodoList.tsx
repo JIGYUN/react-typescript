@@ -1,4 +1,3 @@
-import React from 'react';
 import { useObserver } from 'mobx-react';
 import  UseStore  from '../store/UseStore';
 import TodoItem from './TodoItem';
@@ -22,7 +21,7 @@ const TodoList = () => {
   } = UseStore();
 
   return useObserver(() => (
-    <List className={classes.root}>
+    <List className={classes.root} style={{textAlign:"center",alignItems:"center",paddingTop:"60px"}}>
       {todoData.map((v) => (
         <TodoItem data={v} key={`todoData_${v.scheduleNo}`} />
       ))}
