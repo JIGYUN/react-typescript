@@ -42,7 +42,7 @@ const TodoItem = ({ data }: Props) => {
   };
 
   return (
-    <ListItem role={undefined} button>  
+    <ListItem role={undefined} button>
       <ListItemIcon>
         <Checkbox checked={data.useYn == "Y" ? true : false} onClick={checkItem} />
       </ListItemIcon>

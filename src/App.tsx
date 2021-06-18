@@ -1,9 +1,9 @@
 
 import './App.css';
 import React, {Component} from 'react'; 
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom';
 import TodoPage from "./todo/page/TodoPage";
-import TodoPage2 from "./todo/page/TodoPage_2";
+import ChatPage from "./chat/page/ChatPage";
 
 class App extends Component{
 
@@ -12,13 +12,14 @@ class App extends Component{
     return(
       <div>
         <Router>
-            <Route path="/" component={TodoPage2} />
+            <Redirect to="/chat" />
+            <Route path="/chat" component={ChatPage} />  
             <Route path="/todo" component={TodoPage} /> 
         </Router>
       </div>
-    )
+    ) 
   }
 
-} 
+}
 
 export default App;

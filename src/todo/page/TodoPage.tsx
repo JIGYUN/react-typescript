@@ -16,9 +16,9 @@ class TodoPage extends Component{
     return(
     <div className="TodoPage">
         <Header/>
-        <TodoForm/> 
+        <TodoForm/>
         <TodoList />
-        <Footer/>
+        <Footer highlight="todo"/>
     </div>
     )
   }

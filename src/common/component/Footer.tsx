@@ -9,8 +9,7 @@ import LocationOnIcon from '@material-ui/icons/LocationOn';
 import { Link, Route, BrowserRouter as Router, useHistory } from "react-router-dom";
 
 
-const Bottom = () => {
-
+const Footer = (props) => {
 
   const useStyles = makeStyles({ 
     root: {
@@ -21,24 +20,24 @@ const Bottom = () => {
   });
 
   const classes = useStyles();
-  const [value, setValue] = React.useState('recents');
+  const [value, setValue] = React.useState(props.highlight);
 
   const history = useHistory();
 
   const handleChange = (event, newValue) => {
-    if (newValue == "recents"){
-      history.push("/");
-    } else if (newValue == "favorites") {
+    if (newValue == "chat"){
+      history.push("/chat");
+    } else if (newValue == "todo") {
       history.push("/todo");
     }
-    setValue(newValue);
+    setValue(newValue); 
   };
   
   return (
     <div style={{textAlign:"center",alignItems:"center",display: "flex",justifyContent:"center"}}>
-      <BottomNavigation value={value} onChange={handleChange} className={classes.root} >
-        <BottomNavigationAction label="Recents" value="recents" icon={<RestoreIcon />}   /> 
-        <BottomNavigationAction label="Favorites" value="favorites" icon={<FavoriteIcon />} />  
+      <BottomNavigation value={value} onChange={handleChange} className={classes.root}>
+        <BottomNavigationAction label="chat" value="chat" icon={<RestoreIcon />}/> 
+        <BottomNavigationAction label="todo" value="todo" icon={<FavoriteIcon />} />  
         <BottomNavigationAction label="Nearby" value="nearby" icon={<LocationOnIcon />} />
         <BottomNavigationAction label="Folder" value="folder" icon={<FolderIcon />} />
       </BottomNavigation>
@@ -46,4 +45,4 @@ const Bottom = () => {
   );
 };
 
-export default Bottom;
+export default Footer;

@@ -159,9 +159,7 @@ export default function PrimarySearchAppBar() {
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" className={classes.title}>
-            <Link to="/" style={{ textDecoration: 'none !important',color:'white' }}>
-              Todo    
-            </Link>
+              Todo
           </Typography>
           <div className={classes.grow} />
           <div className={classes.sectionMobile}>
@@ -170,13 +168,11 @@ export default function PrimarySearchAppBar() {
                 <MailIcon />
               </Badge> 
             </IconButton>2 */}
-            <Link to="/todo">  
               <IconButton aria-label="show 11 new notifications" color="inherit">
                 <Badge badgeContent={1} color="secondary">
                   <NotificationsIcon />
                 </Badge>
               </IconButton>
-            </Link>
             <IconButton
               aria-label="account of current user"
               aria-controls="primary-search-account-menu"
