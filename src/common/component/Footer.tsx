@@ -38,7 +38,7 @@ const Footer = (props) => {
       <BottomNavigation value={value} onChange={handleChange} className={classes.root}>
         <BottomNavigationAction label="chat" value="chat" icon={<RestoreIcon />}/> 
         <BottomNavigationAction label="todo" value="todo" icon={<FavoriteIcon />} />  
-        <BottomNavigationAction label="Nearby" value="nearby" icon={<LocationOnIcon />} />
+        <BottomNavigationAction label="login" value="login" icon={<LocationOnIcon />} />
         <BottomNavigationAction label="Folder" value="folder" icon={<FolderIcon />} />
       </BottomNavigation>
     </div>

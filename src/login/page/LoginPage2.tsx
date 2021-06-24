@@ -1,8 +1,9 @@
-import LoginForm from "../component/LoginForm";
+import LoginForm2 from "../component/LoginForm2";
+
 import React, {Component} from 'react'; 
 import { login } from '../service/LoginService';
 
-class LoginPage extends Component{
+class LoginPage2 extends Component{
 
   componentDidMount() {  
     
@@ -11,12 +12,14 @@ class LoginPage extends Component{
   render()
   {
     return(
-    <div className="LoginPage">
-        <LoginForm/>
+    <div className="LoginPage2">
+
+        <LoginForm2/>
+
     </div>
     )
   } 
 
 }
 
-export default LoginPage;
+export default LoginPage2;

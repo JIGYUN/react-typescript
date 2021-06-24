@@ -14,7 +14,11 @@ import AccountCircle from '@material-ui/icons/AccountCircle';
 import MailIcon from '@material-ui/icons/Mail';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import MoreIcon from '@material-ui/icons/MoreVert';
-import { Link, Route, BrowserRouter as Router } from "react-router-dom";
+import { Link, Route, BrowserRouter as Router, useHistory } from "react-router-dom";
+import VpnKeyIcon from '@material-ui/icons/VpnKey';
+import Button from '@material-ui/core/Button';
+import  UseStore  from '../../login/store/UseStore';
+
 
 const useStyles = makeStyles((theme) => ({
   grow: {
@@ -81,6 +85,11 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function PrimarySearchAppBar() {
+
+  const { login } = UseStore();
+
+  const history = useHistory();
+
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
@@ -105,46 +114,31 @@ export default function PrimarySearchAppBar() {
     setMobileMoreAnchorEl(event.currentTarget);
   };
 
+  const logoutProc = () => {
+     login.logout();
+     alert("로그아웃이 되었습니다.");
+     login.isLogin = false;
+     history.push("/login");
+  }
+
+
   const mobileMenuId = 'primary-search-account-menu-mobile';
-  const renderMobileMenu = (
-    <Menu
-      anchorEl={mobileMoreAnchorEl}
-      anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
-      id={mobileMenuId}
-      keepMounted
-      transformOrigin={{ vertical: 'top', horizontal: 'right' }}
-      open={isMobileMenuOpen}
-      onClose={handleMobileMenuClose}
-    >
-      <MenuItem>
-        <IconButton aria-label="show 4 new mails" color="inherit">
-          <Badge badgeContent={4} color="secondary">
-            <MailIcon />
-          </Badge>
-        </IconButton>
-        <p>Messages</p>
-      </MenuItem>
-      <MenuItem>
-        <IconButton aria-label="show 11 new notifications" color="inherit">
-          <Badge badgeContent={11} color="secondary">
-            <NotificationsIcon />
-          </Badge>
-        </IconButton>
-        <p>Notifications</p>
-      </MenuItem>
-      <MenuItem onClick={handleProfileMenuOpen}>
-        <IconButton
-          aria-label="account of current user"
-          aria-controls="primary-search-account-menu"
-          aria-haspopup="true"
-          color="inherit"
-        >
-          <AccountCircle />
-        </IconButton>
-        <p>Profile</p>
-      </MenuItem>
-    </Menu>
-  );
+
+  let headerLogin: any = null;
+
+  if (sessionStorage.getItem("name") != null && sessionStorage.getItem("name") != "" && sessionStorage.getItem("name") != undefined) {
+    headerLogin = (
+      <Button type="button" variant="contained" color="primary" onClick={() => logoutProc()}>
+        로그아웃
+      </Button> 
+    );
+  } else {
+    headerLogin = (
+      <Button type="button" variant="contained" color="primary" onClick={() => history.push("/login")}>  
+        로그인
+      </Button>
+    );
+  }
 
   return (
     <div className={classes.grow} style={{textAlign:"center",alignItems:"center",display: "flex",justifyContent:"center"}}>
@@ -168,11 +162,11 @@ export default function PrimarySearchAppBar() {
                 <MailIcon />
               </Badge> 
             </IconButton>2 */}
-              <IconButton aria-label="show 11 new notifications" color="inherit">
-                <Badge badgeContent={1} color="secondary">
-                  <NotificationsIcon />
-                </Badge>
-              </IconButton>
+            <IconButton aria-label="show 11 new notifications" color="inherit">
+              <Badge badgeContent={1} color="secondary">
+                <NotificationsIcon />
+              </Badge>
+            </IconButton>
             <IconButton
               aria-label="account of current user"
               aria-controls="primary-search-account-menu"
@@ -180,10 +174,10 @@ export default function PrimarySearchAppBar() {
               color="inherit">
               <AccountCircle />
             </IconButton>
+            {headerLogin}
           </div>
         </Toolbar>
       </AppBar>
-      {renderMobileMenu}
     </div>
   );
 }
