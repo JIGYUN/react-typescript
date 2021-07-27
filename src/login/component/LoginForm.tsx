@@ -14,6 +14,7 @@ import Box from '@material-ui/core/Box';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
+import GoogleLogin from 'react-google-login';
 
 const useStyles = makeStyles((theme) => ({
   paper: { 
@@ -31,7 +32,17 @@ const useStyles = makeStyles((theme) => ({
     marginTop: theme.spacing(1),
   },
   submit: {
-    margin: theme.spacing(3, 0, 2),
+    margin: theme.spacing(3, 0, 1),
+  },
+  googleButton: {
+    margin: theme.spacing(0, 0, 2),
+    width: "100%",
+    height:"35px",
+    borderRadius: "4px",
+    background: "#db3236",
+    color:"white",
+    border:"0px transparent",
+    textAlign: "center",
   },
 }));
 
@@ -88,7 +99,7 @@ const LoginForm = () => {
       alert("가입하지 않은 아이디이거나, 잘못된 비밀번호입니다.");
     }
   }
-  
+
   const onChangeId = (e: React.ChangeEvent<HTMLInputElement>) => {
     setId(e.target.value);
   };
@@ -96,7 +107,43 @@ const LoginForm = () => {
   const onChangePwd = (e: React.ChangeEvent<HTMLInputElement>) => {
     setPwd(e.target.value); 
   }; 
-  
+
+  const googleLoginProc = async (data) => {
+    console.log("구글 로그인 시작"); 
+    console.log(data.profileObj);
+    const googleId = data.profileObj.googleId;
+    const googleName = data.profileObj.googleName;
+    const googleEmail = data.profileObj.googleEmail;
+    const res = await login.googleLogin(googleId, googleName,googleEmail);
+    if (res.status == "success") {
+      sessionStorage.setItem('id',res.userDetail.googleId);
+      sessionStorage.setItem('name',res.userDetail.googleName);
+      sessionStorage.setItem('idx',res.userDetail.googleEmail);
+      alert("구글 로그인이 완료되었습니다.");
+      login.isLogin = true;
+      history.push("/todo");
+    } else if (res.status == "insert") {
+      sessionStorage.setItem('id',res.userDetail.googleId);
+      sessionStorage.setItem('name',res.userDetail.googleName);
+      sessionStorage.setItem('idx',res.userDetail.googleEmail);
+      alert("구글 회원가입이 완료되었습니다.\n 로그인후 메인페이지로 이동합니다.");
+      login.isLogin = true;
+      history.push("/todo");
+    } else {
+      alert("구글 로그인이 실패하였습니다.");
+    }
+  }
+
+  // Google Login
+  const responseGoogle = (res) => {
+      googleLoginProc(res);
+  }
+
+  // Login Fail
+  const responseFail = (err) => {
+      console.error(err);
+  }
+
   return (
     <Container component="main" maxWidth="xs">
       <CssBaseline />
@@ -140,11 +187,18 @@ const LoginForm = () => {
             type="submit"
             fullWidth
             variant="contained"
-            color="primary"
+            color="primary"   
             className={classes.submit}
           >
             로그인
           </Button>
+          <GoogleLogin
+              clientId="442434028472-bpigre700o77ehd0p9g4g8qhf4bobfjs.apps.googleusercontent.com"
+              buttonText="구글 로그인"
+              onSuccess={responseGoogle}
+              onFailure={responseFail}
+              className={classes.googleButton}
+          />
           <Grid container>
             <Grid item xs>
               <Link href="#" variant="body2">
